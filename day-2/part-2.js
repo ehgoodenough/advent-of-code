@@ -1,12 +1,6 @@
 var fs = require("fs")
 var assert = require("assert")
 
-assert(checksum([
-    [5, 9, 2, 8],
-    [9, 4, 7, 3],
-    [3, 8, 6, 5]
-]) == 9)
-
 function checksum(table) {
     return table.reduce((sum, row) => {
         if(row.length == 0) {
@@ -27,13 +21,28 @@ function checksum(table) {
     }, 0)
 }
 
-fs.readFile("./input.txt", (error, input) => {
-    assert(error == undefined)
+////////////
+// Tests //
+//////////
 
-    input = input.toString().trim()
-    input = input.split("\n").map((row) => {
-        return row.split("\t")
-    })
+assert(checksum([
+    [5, 9, 2, 8],
+    [9, 4, 7, 3],
+    [3, 8, 6, 5]
+]) == 9)
 
-    console.log("The answer is " + checksum(input))
+/////////////
+// Inputs //
+///////////
+
+// Load, trim, split and parse the input.
+let input = fs.readFileSync("./numbers.txt")
+input = input.toString().trim()
+input = input.split("\n").map((row) => {
+    return row.split("\t")
 })
+
+// Calculate and print the answer.
+console.log("The answer is " + checksum(input))
+
+// Expected: 326

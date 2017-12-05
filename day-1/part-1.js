@@ -52,23 +52,27 @@ function sumAdjacentMatches(input) {
     return sum
 }
 
-// Run some tests.
+////////////
+// Tests //
+//////////
+
 assert(sumAdjacentMatches(1122) == 3)
 assert(sumAdjacentMatches(1111) == 4)
 assert(sumAdjacentMatches(1234) == 0)
 assert(sumAdjacentMatches(91212129) == 9)
 
-// Load the input.
-const INPUT = path.resolve("./input.txt")
-fs.readFile(INPUT, (error, input) => {
-    assert(error == undefined)
+/////////////
+// Inputs //
+///////////
 
-    // Parse and trim the input as a string.
-    input = input.toString().trim()
+// Load, trim, split and parse the input.
+let input = fs.readFileSync("./number.txt")
+input = input.toString().trim()
 
-    // Pass the input to the function.
-    let output = sumAdjacentMatches(input)
+// Pass the input to the function.
+let output = sumAdjacentMatches(input)
 
-    // Print out your
-    console.log("The sumAdjacentMatches of input.txt is " + output)
-})
+// Print out the output.
+console.log("The sumAdjacentMatches of input.txt is " + output)
+
+// Expected: 1177

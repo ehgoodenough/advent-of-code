@@ -27,9 +27,9 @@ function getJumpCount(jumps) {
   return count
 }
 
-//////////////
-// Testing //
 ////////////
+// Tests //
+//////////
 
 assert(getJumpCount([0, 3, 0, 1, -3]) == 10)
 
@@ -37,19 +37,17 @@ assert(getJumpCount([0, 3, 0, 1, -3]) == 10)
 // Inputs //
 ///////////
 
-fs.readFile("./input.txt", (error, input) => {
-  assert(error == undefined)
-
-  // Parse and trim and split the input.
-  input = input.toString().trim().split("\n").map((value) => {
-    return Number.parseInt(value)
-  })
-
-  // Pass the input to the function.
-  let count = getJumpCount(input)
-
-  // Print out the result of the inputs.
-  console.log("The count of jumps to escape input.txt is " + count)
+// Load, trim, split and parse the input.
+let input = fs.readFileSync("./input.txt")
+input = input.toString().trim().split("\n")
+input = input.map((value) => {
+  return Number.parseInt(value)
 })
+
+// Pass the input to the function.
+let output = getJumpCount(input)
+
+// Print out the result of the inputs.
+console.log("The count of jumps to escape input.txt is " + output)
 
 // Expected: 25136209

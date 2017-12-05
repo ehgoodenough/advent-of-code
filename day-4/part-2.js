@@ -32,9 +32,9 @@ function isValidPassphrase(phrase) {
   })
 }
 
-//////////////
-// Testing //
 ////////////
+// Tests //
+//////////
 
 assert(isValidPassphrase("abcde fghij") == true)
 assert(isValidPassphrase("abcde xyz ecdab") == false)
@@ -46,17 +46,16 @@ assert(isValidPassphrase("oiii ioii iioi iiio") == false)
 // Inputs //
 ///////////
 
-fs.readFile("./input.txt", (error, phrases) => {
-    assert(error == undefined)
+// Load, trim, split and parse the input.
+let phrases = fs.readFileSync("./phrases.txt")
+phrases = phrases.toString().trim().split("\n")
 
-    // Parse and trim and split the input.
-    phrases = phrases.toString().trim().split("\n")
+// Count how many phrases are valid.
+let count = phrases.reduce((count, phrase) => {
+  return count + (isValidPassphrase(phrase) ? 1 : 0)
+}, 0)
 
-    // Count how many phrases are valid.
-    let count = phrases.reduce((count, phrase) => {
-      return count + (isValidPassphrase(phrase) ? 1 : 0)
-    }, 0)
+// Print out the count of valid phrases.
+console.log("The count of valid passphrases in input.txt is " + count)
 
-    // Print out the result of the inputs.
-    console.log("The count of valid passphrases in input.txt is " + count)
-})
+// Expected: 231

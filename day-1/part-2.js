@@ -54,24 +54,28 @@ function sumHalfwayAroundMatches(input) {
     return sum
 }
 
-// Run some tests.
+////////////
+// Tests //
+//////////
+
 assert(sumHalfwayAroundMatches(1212) == 6)
 assert(sumHalfwayAroundMatches(1221) == 0)
 assert(sumHalfwayAroundMatches(123425) == 4)
 assert(sumHalfwayAroundMatches(123123) == 12)
 assert(sumHalfwayAroundMatches(12131415) == 4)
 
-// Load the input.
-const INPUT = path.resolve("./input.txt")
-fs.readFile(INPUT, (error, input) => {
-    assert(error == undefined)
+/////////////
+// Inputs //
+///////////
 
-    // Parse and trim the input as a string.
-    input = input.toString().trim()
+// Load, trim, split and parse the input.
+let input = fs.readFileSync("./number.txt")
+input = input.toString().trim()
 
-    // Pass the input to the function.
-    let output = sumHalfwayAroundMatches(input)
+// Pass the input to the function.
+let output = sumHalfwayAroundMatches(input)
 
-    // Print out your
-    console.log("The sumHalfwayAroundMatches of input.txt is " + output)
-})
+// Print out the output.
+console.log("The sumAdjacentMatches of input.txt is " + output)
+
+// Expected: 1060
